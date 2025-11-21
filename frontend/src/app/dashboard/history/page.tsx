@@ -31,8 +31,10 @@ export default function HistoryPage() {
         setLoading(false);
         return;
       }
+      
 
-      const response = await fetch(`http://localhost:8000/history?user_id=${user.id}`);
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${apiUrl}/history?user_id=${user.id}`);
       const data = await response.json();
       setGenerations(data);
     } catch (error) {
